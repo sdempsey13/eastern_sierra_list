@@ -5,12 +5,16 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+# development:
+#   <<: *default
+#   database: eastern_sierra_list_development
+#   username: eastern_sierra_list
+#   password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
+#   host: localhost
+
 development:
-  <<: *default
-  database: eastern_sierra_list_development
-  username: eastern_sierra_list
-  password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
-  host: localhost
+  adapter: sqlite3
+  database: eastern_sierra_list_development_sqlite
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
@@ -29,11 +33,12 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  host: localhost
-  database: eastern_sierra_list_test
-  username: eastern_sierra_list
-  password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
+  adapter: sqlite3
+  # <<: *default
+  # host: localhost
+  # database: eastern_sierra_list_test
+  # username: eastern_sierra_list
+  # password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
